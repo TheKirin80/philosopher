@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 21:34:58 by akefeder          #+#    #+#             */
-/*   Updated: 2022/05/06 23:23:30 by akefeder         ###   ########.fr       */
+/*   Updated: 2022/05/24 20:26:11 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,22 @@ void	affichage_fi(t_philo philo, int timestamp_in_ms, int code)
 	if (code == DEATH)
 	printf("%i %i died", timestamp_in_ms, philo.num);
 	printf("\n");
+}
+
+int ft_atoi(char *str)
+{
+	int	i;
+	long res;
+	int rendu;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		res = res * 10 + (str[i] - 48);
+		if (res > 2147483647)
+			return (ERROR);
+		i++;
+	}
+	rendu = (int)res;
+	return (rendu);
 }
