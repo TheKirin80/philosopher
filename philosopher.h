@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 04:01:51 by akefeder          #+#    #+#             */
-/*   Updated: 2022/05/24 20:34:19 by akefeder         ###   ########.fr       */
+/*   Updated: 2022/05/25 14:16:13 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ int	verif_param(int ac, char **av);
 int	ft_strlen(char *s);
 int ft_atoi(char *str);
 void	affichage_fi(t_philo philo, int timestamp_in_ms, int code);
-int	set_cour(t_amphi *cour)
+int	set_cour(t_amphi *cour);
 int	prepa_cour(char **av, int ac, t_amphi *cour);
 #endif

@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 21:34:58 by akefeder          #+#    #+#             */
-/*   Updated: 2022/05/24 20:26:11 by akefeder         ###   ########.fr       */
+/*   Updated: 2022/05/31 16:37:10 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int ft_atoi(char *str)
 	int rendu;
 
 	i = 0;
+	res = 0;
 	while (str[i] != '\0')
 	{
 		res = res * 10 + (str[i] - 48);
