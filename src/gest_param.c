@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 21:28:42 by akefeder          #+#    #+#             */
-/*   Updated: 2022/05/31 20:50:14 by akefeder         ###   ########.fr       */
+/*   Updated: 2022/06/05 17:32:36 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,10 @@ int	charg_philo(t_amphi *cour)
 		cour->tab_philo[i]->tte = cour->tte;
 		cour->tab_philo[i]->tts = cour->tts;
 		cour->tab_philo[i]->num = i;
-		
+		cour->tab_philo[i]->fork = PTHREAD_MUTEX_INITIALIZER;
+		i++;
 	}
+	if (assos_fork(cour);
 }
 
 int	prepa_cour(char **av, int ac, t_amphi *cour)
