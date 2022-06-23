@@ -16,16 +16,15 @@ CC 		= clang
 
 RM 		= rm -f
 
-CFLAGS	= -Wall -Wextra -Werror -g3 #-fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror #-g3 #-fsanitize=address
 
 all:		${NAME}
 
 .c.o :
-			@ $(CC) $(CFLAGS) $(INC) -c $< -o $@
+			$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 ${NAME}:	${OBJS}
-			$(CC) $(OBJS) -lpthread -o $(NAME) #-D_REENTRANT 
-
+			$(CC) $(CFLAGS) $(OBJS) -lpthread -o $(NAME) 
 clean:		
 			${RM} ${OBJS} ${OBJSBON}
 

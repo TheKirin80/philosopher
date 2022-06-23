@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 21:15:25 by akefeder          #+#    #+#             */
-/*   Updated: 2022/06/23 17:54:00 by akefeder         ###   ########.fr       */
+/*   Updated: 2022/06/23 18:10:16 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int run_thread(t_amphi *cour)
 	i = 0;
 	while (i < cour->nbr_philo)
 	{
-		pthread_create (&cour->tab_philo[i].ref, NULL, routine, (void *)&cour->tab_philo[i]);
+		pthread_create (&cour->tab_philo[i].ref, NULL, routine, &cour->tab_philo[i]);
 		i++;
 	}
 	i = 0;
