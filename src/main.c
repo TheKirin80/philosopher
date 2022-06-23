@@ -6,11 +6,31 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 21:15:25 by akefeder          #+#    #+#             */
-/*   Updated: 2022/05/31 16:37:01 by akefeder         ###   ########.fr       */
+/*   Updated: 2022/06/23 17:54:00 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosopher.h"
+
+int run_thread(t_amphi *cour)
+{
+	int	i;
+
+	i = 0;
+	while (i < cour->nbr_philo)
+	{
+		pthread_create (&cour->tab_philo[i].ref, NULL, routine, (void *)&cour->tab_philo[i]);
+		i++;
+	}
+	i = 0;
+	while (i < cour->nbr_philo)
+	{
+		pthread_join(cour->tab_philo[i].ref, NULL);
+		i++;
+	}
+	return (OK);
+}
+
 
 int main(int ac, char **av)
 {
@@ -21,7 +41,9 @@ int main(int ac, char **av)
 		return(printf("t'es mauvais chef\n"), 0);
 	if (set_cour(&cour) == ERROR || prepa_cour(av, ac, &cour) == ERROR)
 		return(printf("t'es mauvais chef\n"), 0);
+	if (run_thread(&cour) == ERROR)
+		return (freetime(&cour), 0);
+	return (freetime(&cour), 0);
 	
-	return (0);
 }
 

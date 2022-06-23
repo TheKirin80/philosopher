@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 04:01:51 by akefeder          #+#    #+#             */
-/*   Updated: 2022/05/25 14:16:13 by akefeder         ###   ########.fr       */
+/*   Updated: 2022/06/23 17:54:34 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ typedef struct s_amphi	t_amphi;
 
 struct s_philo
 {
-	unsigned int ref;
-	pthread_mutex_t *fork;
+	pthread_t ref;
+	pthread_mutex_t fork_g;
+	pthread_mutex_t fork_d;
 	int ttd;
 	int tte;
 	int tts;
@@ -49,7 +50,7 @@ struct s_amphi
 	int tte;
 	int tts;
 	int nbr_eat;
-
+	pthread_mutex_t *forks;
 	pthread_mutex_t *aff;
 };
 
@@ -59,4 +60,6 @@ int ft_atoi(char *str);
 void	affichage_fi(t_philo philo, int timestamp_in_ms, int code);
 int	set_cour(t_amphi *cour);
 int	prepa_cour(char **av, int ac, t_amphi *cour);
+void freetime(t_amphi *cour);
+void	*routine(void *philo);
 #endif

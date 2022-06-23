@@ -1,6 +1,6 @@
 SRC_DIR	= src
 
-SRC_FILES	= tool.c gest_param.c main.c philosopher.c
+SRC_FILES	= routine.c free.c tool.c gest_param.c main.c philosopher.c
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 
@@ -16,15 +16,15 @@ CC 		= clang
 
 RM 		= rm -f
 
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -g3 #-fsanitize=address
 
 all:		${NAME}
 
 .c.o :
-			$(CC) $(CFLAGS) $(INC) -c $< -o $@
+			@ $(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 ${NAME}:	${OBJS}
-			$(CC) $(OBJS) -lpthread -D_REENTRANT -o $(NAME)
+			$(CC) $(OBJS) -lpthread -o $(NAME) #-D_REENTRANT 
 
 clean:		
 			${RM} ${OBJS} ${OBJSBON}
