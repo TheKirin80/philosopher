@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 21:15:25 by akefeder          #+#    #+#             */
-/*   Updated: 2022/07/17 01:36:32 by akefeder         ###   ########.fr       */
+/*   Updated: 2022/07/17 05:54:12 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,10 @@ int main(int ac, char **av)
 		return(printf("t'es mauvais chef\n"), 0);
 	if (set_cour(&cour) == ERROR || prepa_cour(av, ac, &cour) == ERROR)
 		return(printf("t'es mauvais chef\n"), 0);
+	cour.begin = timestamp_in_ms();
 	if (run_thread(&cour) == ERROR)
 		return (freetime(&cour), 0);
+	printf("timestamp = %lld\n", timestamp_in_ms() - cour.begin);
 	return (freetime(&cour), 0);
 	
 }

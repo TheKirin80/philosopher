@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 21:34:58 by akefeder          #+#    #+#             */
-/*   Updated: 2022/07/17 01:34:00 by akefeder         ###   ########.fr       */
+/*   Updated: 2022/07/17 05:26:03 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,13 @@ int ft_atoi(char *str)
 	}
 	rendu = (int)res;
 	return (rendu);
+}
+
+long long	timestamp_in_ms()
+{
+	struct timeval	tv;
+
+	if (gettimeofday(&tv, NULL) < 0)
+		return (ERROR);
+	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }

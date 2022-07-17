@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 04:01:51 by akefeder          #+#    #+#             */
-/*   Updated: 2022/07/16 19:42:02 by akefeder         ###   ########.fr       */
+/*   Updated: 2022/07/17 06:49:58 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
-#include <pthread.h>
+# include <pthread.h>
+# include <sys/time.h>
 
 # define ERROR -1
 # define OK 0
@@ -51,6 +52,8 @@ struct s_amphi
 	int tte;
 	int tts;
 	int nbr_eat;
+	long long begin;
+	pthread_mutex_t *time;
 	pthread_mutex_t *forks;
 	pthread_mutex_t *aff;
 };
@@ -64,4 +67,5 @@ int	prepa_cour(char **av, int ac, t_amphi *cour);
 void freetime(t_amphi *cour);
 void	*routine(void *philo);
 void affichage(t_philo *philo, char *message);
+long long	timestamp_in_ms();
 #endif
