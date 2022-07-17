@@ -5,8 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/27 07:11:21 by akefeder          #+#    #+#             */
-/*   Updated: 2022/04/27 07:11:23 by akefeder         ###   ########.fr       */
+/*   Created: 2022/07/16 19:35:28 by akefeder          #+#    #+#             */
+/*   Updated: 2022/07/16 19:44:50 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../philosopher.h"
+
+void affichage(t_philo *philo, char *message)
+{
+	printf("je suis le philo %i et %s\n", philo->num, message);
+}

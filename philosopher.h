@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 04:01:51 by akefeder          #+#    #+#             */
-/*   Updated: 2022/06/23 17:54:34 by akefeder         ###   ########.fr       */
+/*   Updated: 2022/07/16 19:42:02 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ struct s_philo
 	int tte;
 	int tts;
 	int num;
+	t_amphi *amphi;
 };
 
 struct s_amphi
@@ -62,4 +63,5 @@ int	set_cour(t_amphi *cour);
 int	prepa_cour(char **av, int ac, t_amphi *cour);
 void freetime(t_amphi *cour);
 void	*routine(void *philo);
+void affichage(t_philo *philo, char *message);
 #endif

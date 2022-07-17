@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 21:28:42 by akefeder          #+#    #+#             */
-/*   Updated: 2022/06/23 17:28:33 by akefeder         ###   ########.fr       */
+/*   Updated: 2022/07/17 01:36:04 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	charg_philo(t_amphi *cour)
 			cour->tab_philo[i].fork_d = cour->forks[0];
 		else
 			cour->tab_philo[i].fork_d = cour->forks[i + 1];
+		cour->tab_philo[i].amphi = cour;
 		i++;
 	}
 	return (OK);
@@ -73,6 +74,7 @@ int charg_forks(t_amphi* cour)
 	int	i;
 
 	i = 0;
+
 	cour->forks = malloc ((cour->nbr_philo + 1) * sizeof(pthread_mutex_t));
 	if (cour->forks == NULL)
 		return (ERROR);
@@ -101,6 +103,6 @@ int	prepa_cour(char **av, int ac, t_amphi *cour)
 	if (charg_forks(cour) == ERROR)
 		return (ERROR);
 	if (charg_philo(cour) == ERROR)
-		return (ERROR);
+		return (printf("ici\n"), ERROR);
 	return (OK);
 }
