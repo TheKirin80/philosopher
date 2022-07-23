@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 21:34:58 by akefeder          #+#    #+#             */
-/*   Updated: 2022/07/17 05:26:03 by akefeder         ###   ########.fr       */
+/*   Updated: 2022/07/24 00:36:38 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,6 @@ int ft_strlen(char *s)
 	while(s[i] != '\0')
 		i++;
 	return (i);
-}
-
-void	affichage_fi(t_philo philo, int timestamp_in_ms, int code)
-{
-	if (code == FORK)
-	printf("%i %i has taken a fork", timestamp_in_ms, philo.num);
-	if (code == EAT)
-	printf("%i %i is eating", timestamp_in_ms, philo.num);
-	if (code == SLEEP)
-	printf("%i %i is sleeping", timestamp_in_ms, philo.num);
-	if (code == THINK)
-	printf("%i %i is thinking", timestamp_in_ms, philo.num);
-	if (code == DEATH)
-	printf("%i %i died", timestamp_in_ms, philo.num);
-	printf("\n");
 }
 
 int ft_atoi(char *str)
@@ -56,11 +41,19 @@ int ft_atoi(char *str)
 	return (rendu);
 }
 
+void mysleep(int i)
+{
+	long long time;
+
+	time = timestamp_in_ms();
+	while (timestamp_in_ms() - time < i)
+		usleep(100);
+}
+
 long long	timestamp_in_ms()
 {
 	struct timeval	tv;
 
-	if (gettimeofday(&tv, NULL) < 0)
-		return (ERROR);
+	while (gettimeofday(&tv, NULL) < 0);
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }

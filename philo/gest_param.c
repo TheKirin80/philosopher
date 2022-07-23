@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 21:28:42 by akefeder          #+#    #+#             */
-/*   Updated: 2022/07/17 05:53:17 by akefeder         ###   ########.fr       */
+/*   Updated: 2022/07/24 00:05:18 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int charg_forks(t_amphi* cour)
 	while(i < cour->nbr_philo)
 	{
 		if (pthread_mutex_init (&cour->forks[i], NULL) != 0)
-				return (ERROR);
+				return (free_forks(cour, i), ERROR);
 		i++;
 	}
 	return (OK);
@@ -103,6 +103,6 @@ int	prepa_cour(char **av, int ac, t_amphi *cour)
 	if (charg_forks(cour) == ERROR)
 		return (ERROR);
 	if (charg_philo(cour) == ERROR)
-		return (printf("ici\n"), ERROR);
+		return (free_forks(cour, cour->nbr_philo), ERROR);
 	return (OK);
 }

@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 18:57:32 by akefeder          #+#    #+#             */
-/*   Updated: 2022/07/17 06:52:40 by akefeder         ###   ########.fr       */
+/*   Updated: 2022/07/24 00:36:24 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 int r_eating(t_philo *philo)
 {
+
 	pthread_mutex_lock((philo->amphi->aff));
 	affichage(philo, "is eating");
 	pthread_mutex_unlock(philo->amphi->aff);
-	usleep(philo->tte * 1000);
+	mysleep(philo->tte);
 	return (OK);
 }
 
@@ -26,7 +27,7 @@ int r_sleeping(t_philo *philo)
 	pthread_mutex_lock(philo->amphi->aff);
 	affichage(philo, "is sleeping");
 	pthread_mutex_unlock(philo->amphi->aff);
-	usleep(philo->tts * 1000);
+	mysleep(philo->tts);
 	return (OK);
 }
 

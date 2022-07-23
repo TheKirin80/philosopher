@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 04:01:51 by akefeder          #+#    #+#             */
-/*   Updated: 2022/07/17 06:49:58 by akefeder         ###   ########.fr       */
+/*   Updated: 2022/07/24 00:28:11 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,12 @@ struct s_amphi
 int	verif_param(int ac, char **av);
 int	ft_strlen(char *s);
 int ft_atoi(char *str);
-void	affichage_fi(t_philo philo, int timestamp_in_ms, int code);
 int	set_cour(t_amphi *cour);
 int	prepa_cour(char **av, int ac, t_amphi *cour);
-void freetime(t_amphi *cour);
+void free_forks(t_amphi *cour, int i);
+void freetime(t_amphi *cour, int i);
 void	*routine(void *philo);
 void affichage(t_philo *philo, char *message);
 long long	timestamp_in_ms();
+void mysleep(int i);
 #endif
