@@ -6,11 +6,11 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 21:34:58 by akefeder          #+#    #+#             */
-/*   Updated: 2022/07/24 00:36:38 by akefeder         ###   ########.fr       */
+/*   Updated: 2022/07/24 10:45:07 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philosopher.h"
+#include "philosopher.h"
 
 int ft_strlen(char *s)
 {

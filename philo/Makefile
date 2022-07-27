@@ -1,8 +1,8 @@
 SRC_DIR	= src
 
-SRC_FILES	= routine.c free.c tool.c gest_param.c main.c philosopher.c
+SRC_FILES	= get.c set.c routine.c free.c tool.c gest_param.c main.c philosopher.c
 
-SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
+SRCS = $(SRC_FILES)
 
 INC		= -I includes
 
@@ -16,7 +16,7 @@ CC 		= clang
 
 RM 		= rm -f
 
-CFLAGS	= -Wall -Wextra -Werror #-fsanitize=address #-g3
+CFLAGS	= -Wall -Wextra -Werror -fsanitize=address #-g3
 
 all:		${NAME}
 

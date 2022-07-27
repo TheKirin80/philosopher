@@ -6,11 +6,11 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 21:28:42 by akefeder          #+#    #+#             */
-/*   Updated: 2022/07/24 00:05:18 by akefeder         ###   ########.fr       */
+/*   Updated: 2022/07/24 10:38:09 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philosopher.h"
+#include "philosopher.h"
 int	set_cour(t_amphi *cour)
 {
 	cour->tab_philo = NULL;
@@ -19,28 +19,7 @@ int	set_cour(t_amphi *cour)
 	cour->tte = 0;
 	cour->tts = 0;
 	cour->nbr_eat = 0;
-	return (OK);
-}
-
-int verif_param(int ac, char **av)
-{
-	int i;
-	int j;
-
-	i = 1;
-	while (i < ac)
-	{
-		j = 0;
-		if (ft_strlen(av[i]) > 10)
-			return (ERROR);
-		while(av[i][j] != '\0')
-		{
-			if (!(av[i][j] > 47 && av[i][j] < 58))
-				return (ERROR);
-			j++;
-		}
-		i++;
-	}
+	cour->finish = 0;
 	return (OK);
 }
 
@@ -58,11 +37,11 @@ int	charg_philo(t_amphi *cour)
 		cour->tab_philo[i].tte = cour->tte;
 		cour->tab_philo[i].tts = cour->tts;
 		cour->tab_philo[i].num = i + 1;
-		cour->tab_philo[i].fork_g = cour->forks[i];
+		cour->tab_philo[i].fork_g = &cour->forks[i];
 		if ((i + 1) == cour->nbr_philo)
-			cour->tab_philo[i].fork_d = cour->forks[0];
+			cour->tab_philo[i].fork_d = &cour->forks[0];
 		else
-			cour->tab_philo[i].fork_d = cour->forks[i + 1];
+			cour->tab_philo[i].fork_d = &cour->forks[i + 1];
 		cour->tab_philo[i].amphi = cour;
 		i++;
 	}
@@ -87,6 +66,15 @@ int charg_forks(t_amphi* cour)
 	return (OK);
 }
 
+int charg_mutex(t_amphi *cour)
+{
+	if (pthread_mutex_init(&cour->m_aff, NULL) != 0)
+		return (ERROR);
+	if (pthread_mutex_init(&cour->m_finish, NULL) != 0)
+		return (ERROR);
+	return (OK);
+}
+
 int	prepa_cour(char **av, int ac, t_amphi *cour)
 {
 
@@ -103,6 +91,8 @@ int	prepa_cour(char **av, int ac, t_amphi *cour)
 	if (charg_forks(cour) == ERROR)
 		return (ERROR);
 	if (charg_philo(cour) == ERROR)
+		return (free_forks(cour, cour->nbr_philo), ERROR);
+	if (charg_mutex(cour) == ERROR)
 		return (free_forks(cour, cour->nbr_philo), ERROR);
 	return (OK);
 }

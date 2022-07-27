@@ -6,11 +6,11 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 21:15:25 by akefeder          #+#    #+#             */
-/*   Updated: 2022/07/24 00:21:27 by akefeder         ###   ########.fr       */
+/*   Updated: 2022/07/24 15:42:00 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philosopher.h"
+#include "philosopher.h"
 
 int run_thread(t_amphi *cour)
 {
@@ -31,6 +31,27 @@ int run_thread(t_amphi *cour)
 	return (OK);
 }
 
+int verif_param(int ac, char **av)
+{
+	int i;
+	int j;
+
+	i = 1;
+	while (i < ac)
+	{
+		j = 0;
+		if (ft_strlen(av[i]) > 10)
+			return (ERROR);
+		while(av[i][j] != '\0')
+		{
+			if (!(av[i][j] > 47 && av[i][j] < 58))
+				return (ERROR);
+			j++;
+		}
+		i++;
+	}
+	return (OK);
+}
 
 int main(int ac, char **av)
 {
@@ -44,7 +65,7 @@ int main(int ac, char **av)
 	cour.begin = timestamp_in_ms();
 	if (run_thread(&cour) == ERROR)
 		return (freetime(&cour, 0), 0);
-	printf("timestamp = %lld\n", timestamp_in_ms() - cour.begin);
+	r_death(&cour);
 	return (freetime(&cour, 0), 0);
 	
 }
