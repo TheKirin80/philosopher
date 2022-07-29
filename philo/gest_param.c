@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 21:28:42 by akefeder          #+#    #+#             */
-/*   Updated: 2022/07/24 10:38:09 by akefeder         ###   ########.fr       */
+/*   Updated: 2022/07/29 02:14:03 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,13 @@ int	charg_philo(t_amphi *cour)
 		else
 			cour->tab_philo[i].fork_d = &cour->forks[i + 1];
 		cour->tab_philo[i].amphi = cour;
+		cour->tab_philo[i].lastmeal = timestamp_in_ms();
 		i++;
 	}
 	return (OK);
 }
 
-int charg_forks(t_amphi* cour)
+int charg_forks(t_amphi	*cour)
 {
 	int	i;
 
@@ -71,6 +72,8 @@ int charg_mutex(t_amphi *cour)
 	if (pthread_mutex_init(&cour->m_aff, NULL) != 0)
 		return (ERROR);
 	if (pthread_mutex_init(&cour->m_finish, NULL) != 0)
+		return (ERROR);
+	if (pthread_mutex_init(&cour->m_lastmeal, NULL) != 0)
 		return (ERROR);
 	return (OK);
 }

@@ -1,6 +1,6 @@
 SRC_DIR	= src
 
-SRC_FILES	= get.c set.c routine.c free.c tool.c gest_param.c main.c philosopher.c
+SRC_FILES	= forks.c get.c set.c routine.c free.c tool.c gest_param.c main.c philosopher.c
 
 SRCS = $(SRC_FILES)
 
@@ -16,7 +16,7 @@ CC 		= clang
 
 RM 		= rm -f
 
-CFLAGS	= -Wall -Wextra -Werror -fsanitize=address #-g3
+CFLAGS	= -Wall -Wextra -Werror #-fsanitize=address #-g3
 
 all:		${NAME}
 

@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 21:34:58 by akefeder          #+#    #+#             */
-/*   Updated: 2022/07/24 10:45:07 by akefeder         ###   ########.fr       */
+/*   Updated: 2022/07/29 02:27:22 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,16 @@ int ft_atoi(char *str)
 	return (rendu);
 }
 
-void mysleep(int i)
+void mysleep(unsigned long i, t_amphi *cour)
 {
-	long long time;
+	unsigned long time;
 
 	time = timestamp_in_ms();
-	while (timestamp_in_ms() - time < i)
+	while (timestamp_in_ms() - time < i && get_finish(cour) == 0)
 		usleep(100);
 }
 
-long long	timestamp_in_ms()
+unsigned long	timestamp_in_ms()
 {
 	struct timeval	tv;
 

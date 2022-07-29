@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 04:01:51 by akefeder          #+#    #+#             */
-/*   Updated: 2022/07/24 10:37:33 by akefeder         ###   ########.fr       */
+/*   Updated: 2022/07/29 02:33:21 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ struct s_philo
 	int tte;
 	int tts;
 	int num;
+	unsigned long lastmeal;
 	t_amphi *amphi;
 };
 
@@ -52,11 +53,12 @@ struct s_amphi
 	int tte;
 	int tts;
 	int nbr_eat;
-	long long begin;
+	unsigned long begin;
 	int	finish;
 	pthread_mutex_t *forks;
 	pthread_mutex_t m_aff;
 	pthread_mutex_t m_finish;
+	pthread_mutex_t m_lastmeal;
 };
 
 int	verif_param(int ac, char **av);
@@ -68,8 +70,13 @@ void free_forks(t_amphi *cour, int i);
 void freetime(t_amphi *cour, int i);
 void	*routine(void *philo);
 void affichage(t_philo *philo, char *message);
-long long	timestamp_in_ms();
-void mysleep(int i);
+unsigned long	timestamp_in_ms();
+void mysleep(unsigned long i, t_amphi *cour);
 int get_finish(t_amphi *cour);
 void set_finish(t_amphi *cour, int i);
+unsigned long get_lastmeal(t_amphi *cour, int ref);
+void	set_lastmeal(t_amphi *cour, int ref);
+void	lock_forks(t_philo *philo);
+void	unlock_forks(t_philo *philo);
+int	r_death();
 #endif
