@@ -6,13 +6,13 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 19:56:44 by akefeder          #+#    #+#             */
-/*   Updated: 2022/07/31 20:00:12 by akefeder         ###   ########.fr       */
+/*   Updated: 2022/07/31 20:58:06 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-void free_forks(t_amphi *cour, int i)
+void	free_forks(t_amphi *cour, int i)
 {
 	int	j;
 
@@ -40,14 +40,13 @@ void	free_mutex(t_amphi *cour)
 	}
 }
 
-void free_pth(t_amphi *cour)
+void	free_pth(t_amphi *cour)
 {
 	free(cour->ref);
 	free(cour->tab_philo);
-
 }
 
-void freetime(t_amphi *cour)
+void	freetime(t_amphi *cour)
 {	
 	if (cour->err != 1)
 	{	
@@ -65,4 +64,3 @@ void freetime(t_amphi *cour)
 		free_pth(cour);
 	}
 }
-
