@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 21:15:25 by akefeder          #+#    #+#             */
-/*   Updated: 2022/07/31 21:37:22 by akefeder         ###   ########.fr       */
+/*   Updated: 2022/07/31 21:38:31 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	main(int ac, char **av)
 	t_amphi	cour;
 
 	if (((ac < 5) || (ac > 6)) || (verif_param(ac, av)) == ERROR)
-		return (printf("t'es mauvais chef\n"), 0);
+		return (printf("t'es mauvais chef(fe)\n"), 0);
 	if (set_cour(&cour) == ERROR || prepa_cour(av, ac, &cour) == ERROR)
 		return (freetime(&cour), printf("t'es mauvais chef(fe)\n"), 0);
 	cour.begin = timestamp_in_ms();

@@ -16,7 +16,7 @@ CC 		= clang
 
 RM 		= rm -f
 
-CFLAGS	= -Wall -Wextra -Werror #-fsanitize=thread #-g3
+CFLAGS	= -Wall -Wextra -Werror -fsanitize=thread #-g3
 
 all:		${NAME}
 

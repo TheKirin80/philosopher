@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 19:56:44 by akefeder          #+#    #+#             */
-/*   Updated: 2022/07/31 20:58:06 by akefeder         ###   ########.fr       */
+/*   Updated: 2022/07/31 21:39:34 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	free_forks(t_amphi *cour, int i)
 	j = 0;
 	while (j < i)
 	{
-		printf("j = %i\n", j);
 		pthread_mutex_destroy(&cour->forks[j]);
 		j++;
 	}

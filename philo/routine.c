@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 18:57:32 by akefeder          #+#    #+#             */
-/*   Updated: 2022/07/31 21:36:31 by akefeder         ###   ########.fr       */
+/*   Updated: 2022/07/31 21:39:07 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int	r_death(t_amphi *cour)
 		rep = timestamp_in_ms() - get_lastmeal(cour, i);
 		if (rep > (unsigned long)cour->ttd)
 		{
-			printf("rep = %lu, num_philo = %i\n", rep, cour->tab_philo[i].num);
 			affichage(&cour->tab_philo[i], "died");
 			set_finish(cour, 1);
 		}
