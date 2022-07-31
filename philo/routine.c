@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 18:57:32 by akefeder          #+#    #+#             */
-/*   Updated: 2022/07/31 20:08:36 by akefeder         ###   ########.fr       */
+/*   Updated: 2022/07/31 20:36:30 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int r_death(t_amphi *cour)
 	unsigned long rep;
 
 	i = 0;
-	rep = 0;
 	while (i < cour->nbr_philo && get_finish(cour) == 0)
 	{
 		rep = timestamp_in_ms() - get_lastmeal(cour, i);
@@ -55,19 +54,15 @@ int r_death(t_amphi *cour)
 
 void *routine(void *philo)
 {
-	int i;
 	t_philo *r_philo;
 
 	r_philo = (t_philo *)philo;
-	i = 0;
 	if ((r_philo->num)%2 == 0)
 		mysleep((unsigned long)(r_philo->tte/2), r_philo->amphi);
 	while (get_finish(r_philo->amphi)== 0)
 	{
-		if (r_eating(r_philo) == 1)
-			i = 0;
-		if (r_sleeping(r_philo) == 1)
-			i = 0;
+		r_eating(r_philo);
+		r_sleeping(r_philo);
 	}
 	return (OK);
 }

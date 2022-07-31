@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 04:01:51 by akefeder          #+#    #+#             */
-/*   Updated: 2022/07/31 20:08:15 by akefeder         ###   ########.fr       */
+/*   Updated: 2022/07/31 20:10:05 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ typedef struct s_amphi	t_amphi;
 struct s_philo
 {
 	
-	pthread_mutex_t *fork_g;
-	pthread_mutex_t *fork_d;
+	int	fork_g;
+	int fork_d;
 	int ttd;
 	int tte;
 	int tts;

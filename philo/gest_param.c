@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 21:28:42 by akefeder          #+#    #+#             */
-/*   Updated: 2022/07/31 19:58:32 by akefeder         ###   ########.fr       */
+/*   Updated: 2022/07/31 20:14:26 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ int	charg_philo(t_amphi *cour)
 		cour->tab_philo[i].tte = cour->tte;
 		cour->tab_philo[i].tts = cour->tts;
 		cour->tab_philo[i].num = i + 1;
-		cour->tab_philo[i].fork_g = &cour->forks[i];
+		cour->tab_philo[i].fork_g = i;
 		if ((i + 1) == cour->nbr_philo)
-			cour->tab_philo[i].fork_d = &cour->forks[0];
+			cour->tab_philo[i].fork_d = 0;
 		else
-			cour->tab_philo[i].fork_d = &cour->forks[i + 1];
+			cour->tab_philo[i].fork_d = i + 1;
 		cour->tab_philo[i].amphi = cour;
 		cour->tab_philo[i].lastmeal = timestamp_in_ms();
 		i++;

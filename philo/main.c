@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 21:15:25 by akefeder          #+#    #+#             */
-/*   Updated: 2022/07/31 20:02:31 by akefeder         ###   ########.fr       */
+/*   Updated: 2022/07/31 20:25:35 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,7 @@ int main(int ac, char **av)
 		usleep(8000);
 		r_death(&cour);
 	}
-	// if (get_finish(&cour) == 0)
-	// 	if (join_thread(&cour) == ERROR)
-	// 		return (freetime(&cour, ERROR));
+	join_thread(&cour);
 	return (freetime(&cour), 0);
 
 }
