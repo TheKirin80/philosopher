@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 18:57:32 by akefeder          #+#    #+#             */
-/*   Updated: 2022/07/29 02:36:25 by akefeder         ###   ########.fr       */
+/*   Updated: 2022/07/31 20:08:36 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int r_eating(t_philo *philo)
 {
 	// if (timestamp_in_ms() - philo->amphi->begin > 10000)
 	// 	set_finish(philo->amphi, 1);
-	affichage(philo, "is thinking");
 	lock_forks(philo);
 	affichage(philo, "is eating");
 	set_lastmeal(philo->amphi, (philo->num) - 1);
@@ -29,6 +28,7 @@ int r_sleeping(t_philo *philo)
 {
 	affichage(philo, "is sleeping");
 	mysleep((unsigned long)philo->tts, philo->amphi);
+	affichage(philo, "is thinking");
 	return (OK);
 }
 
@@ -45,7 +45,7 @@ int r_death(t_amphi *cour)
 		if (rep > (unsigned long)cour->ttd)
 		{
 			printf("rep = %lu, num_philo = %i\n", rep, cour->tab_philo[i].num);
-			affichage(&cour->tab_philo[i], "is dead");
+			affichage(&cour->tab_philo[i], "died");
 			set_finish(cour, 1);
 		}
 		i++;
@@ -66,11 +66,8 @@ void *routine(void *philo)
 	{
 		if (r_eating(r_philo) == 1)
 			i = 0;
-			//printf("error in %i with eating\n", r_philo->num);
 		if (r_sleeping(r_philo) == 1)
 			i = 0;
-			//printf("error in %i with sleeping\n", r_philo->num);
 	}
-	//printf("Je suis le numero : %i\n", r_philo->num);
 	return (OK);
 }

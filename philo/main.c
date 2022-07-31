@@ -6,7 +6,7 @@
 /*   By: akefeder <akefeder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 21:15:25 by akefeder          #+#    #+#             */
-/*   Updated: 2022/07/29 02:27:36 by akefeder         ###   ########.fr       */
+/*   Updated: 2022/07/31 20:02:31 by akefeder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@ int run_thread(t_amphi *cour)
 	int	i;
 
 	i = 0;
+	cour->ref = malloc((cour->nbr_philo + 1) * sizeof(pthread_t));
 	while (i < cour->nbr_philo)
 	{
-		pthread_create (&cour->tab_philo[i].ref, NULL, routine, &cour->tab_philo[i]);
+		pthread_create(&cour->ref[i], NULL, routine, &cour->tab_philo[i]);
 		i++;
 	}
 	return (OK);
@@ -32,7 +33,7 @@ int join_thread(t_amphi *cour)
 	i = 0;
 	while (i < cour->nbr_philo)
 	{
-		pthread_join(cour->tab_philo[i].ref, NULL);
+		pthread_join(cour->ref[i], NULL);
 		i++;
 	}
 	return (OK);
@@ -68,18 +69,19 @@ int main(int ac, char **av)
 	if (((ac < 5) || (ac > 6)) || (verif_param(ac, av)) == ERROR)
 		return(printf("t'es mauvais chef\n"), 0);
 	if (set_cour(&cour) == ERROR || prepa_cour(av, ac, &cour) == ERROR)
-		return(freetime(&cour, ERROR),printf("t'es mauvais chef\n"), 0);
+		return(freetime(&cour),printf("t'es mauvais chef\n"), 0);
 	cour.begin = timestamp_in_ms();
 	if (run_thread(&cour) == ERROR)
-		return (freetime(&cour, 0), 0);
+		return (freetime(&cour), 0);
 	while (get_finish(&cour) == 0)
 	{
 		usleep(8000);
 		r_death(&cour);
 	}
-	if (get_finish(&cour) == 0)
-		if (join_thread(&cour) == ERROR)
-			return (freetime(&cour, 0), 0);
-	return (freetime(&cour, 0), 0);
+	// if (get_finish(&cour) == 0)
+	// 	if (join_thread(&cour) == ERROR)
+	// 		return (freetime(&cour, ERROR));
+	return (freetime(&cour), 0);
+
 }
 
